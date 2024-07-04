@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf-original-tester                             :+:      :+:    :+:   */
+/*   ft_putchar_ptr.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jschmitz <jschmitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/01 16:13:39 by jschmitz          #+#    #+#             */
-/*   Updated: 2024/07/01 16:17:22 by jschmitz         ###   ########.fr       */
+/*   Created: 2024/07/04 13:08:16 by jschmitz          #+#    #+#             */
+/*   Updated: 2024/07/04 19:15:27 by jschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include<stdio.h>
+#include "libftprintf.h"
 
-int main()
+void	ft_putchar_ptr(char c, int *count)
 {
-	printf("test normal string");
-	printf("test with %percentage");
-	printf("test double %%percentage");
-	return 0;
+	*count += write (1, &c, 1);
 }

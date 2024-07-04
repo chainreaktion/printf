@@ -6,18 +6,11 @@
 /*   By: jschmitz <jschmitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 11:51:24 by jschmitz          #+#    #+#             */
-/*   Updated: 2024/07/04 19:50:47 by jschmitz         ###   ########.fr       */
+/*   Updated: 2024/07/04 22:03:21 by jschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-
-void	ft_putchar_ptr(char c, int *count);
-void	ft_putnbr_hex_ptr(long long int nbr, int *count, char	casetype);
-void	ft_putnbr_ptr(int n, int *count);
-void	ft_putstr_ptr(char *s, int *count);
-size_t	ft_strlen(const char *s);
-
 
 int	ft_printf(const char *format, ...)
 {
@@ -36,12 +29,11 @@ while (format[i] != '\0')
 			else if (format[i + 1] == 's')
 				ft_putstr_ptr(va_arg(arguments, char *), &count);
 			else if (format[i + 1] == 'p')
-			{
-				count += write(2, "0x", 2);
-				ft_putnbr_hex_ptr((long long int)va_arg(arguments, void *), &count, 'x');
-			}
+				ft_putaddr_ptr((unsigned long long)va_arg(arguments, void *), &count, &arguments);
 			else if (format[i + 1] == 'd' || format[i + 1] == 'i')
 				ft_putnbr_ptr(va_arg(arguments, int), &count);
+			else if (format[i + 1] == 'u')
+				ft_unsigned_putnbr_ptr(va_arg(arguments, unsigned long long), &count);
 			else if (format[i + 1] == 'x' || format[i + 1] == 'X')
 				ft_putnbr_hex_ptr(va_arg(arguments, int), &count, format[i + 1]);
 			else if (format[i + 1] == '%')
@@ -57,8 +49,14 @@ while (format[i] != '\0')
 va_end (arguments);
 return (count);
 }
+/*
+#include <stdio.h>
 
-	/*char	*str = "Dies ist ein Test-String";
+int main()
+{
+	char	*str = "Dies ist ein Test-String";
+	char 	*empty = "\0";
+	char	*nothing = NULL;
 	char	c = 'o';
 	int		ret;
 	int	Zahl = 99;
@@ -67,6 +65,16 @@ return (count);
 	ret = ft_printf("String (s): %s\t", str);
 	printf("%d\n", ret);
 	ret = printf("String (s): %s\t", str);
+	printf("%d\n", ret);
+
+	ret = ft_printf("Empty string (s): %s\t", empty);
+	printf("%d\n", ret);
+	ret = printf("Empty string (s): %s\t", empty);
+	printf("%d\n", ret);
+
+	ret = ft_printf("Nullstring (s): %s\t", nothing);
+	printf("%d\n", ret);
+	ret = printf("Nullstring (s): %s\t", nothing);
 	printf("%d\n", ret);
 
 	ret = ft_printf("'o' (c): %c\t", c);
@@ -100,4 +108,5 @@ return (count);
 	printf("%d\n", ret);
 
 	return (0);
-}*/
+}
+*/

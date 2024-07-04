@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_hex_ptr.c                                :+:      :+:    :+:   */
+/*   ft_unsigned_putnbr_ptr.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jschmitz <jschmitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/27 13:30:23 by jschmitz          #+#    #+#             */
-/*   Updated: 2024/07/04 22:12:06 by jschmitz         ###   ########.fr       */
+/*   Created: 2024/07/04 21:01:03 by jschmitz          #+#    #+#             */
+/*   Updated: 2024/07/04 21:02:00 by jschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void	ft_putnbr_hex_ptr(unsigned long long nbr, int *count, char	casetype)
+void	ft_unsigned_putnbr_ptr(unsigned int n, int *count)
 {
-	char	*base;
-
-	if (casetype == 'X')
-		base = "0123456789ABCDEF";
-	else
-		base = "0123456789abcdef";
+	if (n > 9)
 	{
-			/*if (nbr < 0)
-			{
-				ft_putchar_ptr('-', count);
-				nbr = -nbr;
-			}*/
-		if (nbr >= 16)
-			ft_putnbr_hex_ptr(nbr / 16, count, casetype);
-		ft_putchar_ptr(base[nbr % 16], count);
+		ft_putnbr_ptr((n / 10), count);
+		ft_putnbr_ptr((n % 10), count);
+	}
+	else
+	{
+		n = (int)(n + '0');
+		*count += write (1, &n, 1);
 	}
 }

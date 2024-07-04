@@ -6,7 +6,7 @@
 /*   By: jschmitz <jschmitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:22:26 by jschmitz          #+#    #+#             */
-/*   Updated: 2024/07/04 19:15:54 by jschmitz         ###   ########.fr       */
+/*   Updated: 2024/07/04 20:36:16 by jschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,16 @@ void	ft_putstr_ptr(char *s, int *count)
 	int	i;
 
 	i = 0;
-	while (s[i])
+	if (s != NULL)
 	{
-		*count += write (1, &s[i], 1);
-		i++;
+		while (s[i])
+		{
+			*count += write (1, &s[i], 1);
+			i++;
+		}
 	}
+	else
+		*count += write (1, "(null)", 6);
 }
 /*
 int	main(int argc, char **argv)

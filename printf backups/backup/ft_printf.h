@@ -6,7 +6,7 @@
 /*   By: jschmitz <jschmitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 19:39:06 by jschmitz          #+#    #+#             */
-/*   Updated: 2024/07/07 20:25:25 by jschmitz         ###   ########.fr       */
+/*   Updated: 2024/07/05 14:14:12 by jschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,13 @@
 
 # include <unistd.h>
 # include <stdarg.h>
-# include <stdint.h>
 
 int		ft_printf(const char *format, ...);
 void	ft_putchar_ptr(char c, int *count);
-void	ft_putnbr_hex_ptr(unsigned long long nbr, int *count, char	casetype);
+void	ft_putnbr_hex_ptr(unsigned long int nbr, int *count, char	casetype);
 void	ft_putnbr_ptr(int n, int *count);
 void	ft_putstr_ptr(char *s, int *count);
 void	ft_unsigned_putnbr_ptr(unsigned long n, int *count);
-void	ft_printptr(uintptr_t addr, int *count);
-void	ft_args_selector(va_list arguments, char c, int *countaddr);
+void	ft_putaddr_ptr(unsigned long int addr, int *count, va_list *arguments);
 
 #endif

@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_hex_ptr.c                                :+:      :+:    :+:   */
+/*   ft_putaddr_ptr.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jschmitz <jschmitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/27 13:30:23 by jschmitz          #+#    #+#             */
-/*   Updated: 2024/07/05 18:22:50 by jschmitz         ###   ########.fr       */
+/*   Created: 2024/07/04 21:44:47 by jschmitz          #+#    #+#             */
+/*   Updated: 2024/07/05 14:13:54 by jschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void	ft_putnbr_hex_ptr(unsigned long long nbr, int *count, char casetype)
+void	ft_putaddr_ptr(unsigned long int addr, int *count, va_list *arguments)
 {
-	char	*base;
-
-	if (casetype == 'X')
-		base = "0123456789ABCDEF";
+	if (addr == 0)
+		ft_putstr_ptr("(nil)", count);
 	else
-		base = "0123456789abcdef";
-	if (nbr >= 16)
-		ft_putnbr_hex_ptr(nbr / 16, count, casetype);
-	ft_putchar_ptr(base[nbr % 16], count);
+	{
+		ft_putstr_ptr("0x", count);
+		ft_putnbr_hex_ptr((unsigned long int)va_arg(*arguments, void *), count, 'x');
+	}
 }

@@ -1,24 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putaddr_ptr.c                                   :+:      :+:    :+:   */
+/*   ft_putnbr_ptr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jschmitz <jschmitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/04 21:44:47 by jschmitz          #+#    #+#             */
-/*   Updated: 2024/07/04 22:05:30 by jschmitz         ###   ########.fr       */
+/*   Created: 2024/07/04 14:11:19 by jschmitz          #+#    #+#             */
+/*   Updated: 2024/07/04 19:15:50 by jschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void	ft_putaddr_ptr(unsigned long long addr, int *count, va_list *arguments)
+void	ft_putnbr_ptr(int n, int *count)
 {
-	if (addr == 0)
-		ft_putstr_ptr("(nil)", count);
+	long	nb;
+
+	nb = (long)n;
+	if (nb < 0)
+	{
+		*count += write (1, "-", 1);
+		nb = -nb;
+	}
+	if (nb > 9)
+	{
+		ft_putnbr_ptr((int)(nb / 10), count);
+		ft_putnbr_ptr((int)(nb % 10), count);
+	}
 	else
 	{
-		ft_putstr_ptr("0x", count);
-		ft_putnbr_hex_ptr((unsigned long long)va_arg(*arguments, void *), count, 'x');
+		nb = (int)(nb + '0');
+		*count += write (1, &nb, 1);
 	}
 }
+/*
+int	main(int argc, char **argv)
+{
+	if (argc != 3)
+		return (0);
+	ft_putnbr_fd(atoi(argv[2]), atoi(argv[1]));
+	return (0);
+}*/

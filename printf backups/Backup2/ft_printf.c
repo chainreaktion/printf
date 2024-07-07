@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jschmitz <jschmitz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/05 19:40:33 by jschmitz          #+#    #+#             */
-/*   Updated: 2024/07/07 20:27:35 by jschmitz         ###   ########.fr       */
+/*   Created: 2024/07/03 11:51:24 by jschmitz          #+#    #+#             */
+/*   Updated: 2024/07/05 19:38:37 by jschmitz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,32 @@
 
 int	ft_printf(const char *format, ...)
 {
-	va_list	arguments;
-	int		count;
-	int		i;
-
-	if (!format)
-		return (-1);
-	va_start (arguments, format);
-	i = 0;
-	count = 0;
-	while (format[i] != '\0')
+if (!format)
+	return (-1);
+va_list	arguments;
+int		count;
+int		i;
+va_start	(arguments, format);
+count = 0;
+i = 0;
+while (format[i] != '\0')
+{
+	if (format[i] != '%')
 	{
-		if (format [i] != '%')
-		{
-			ft_putchar_ptr(format[i], &count);
-			//i++;
-		}
-		//else if (ft_strchr(AUTH_ARGS, format[i + 1]) == 0)
-		else
-		{
-			ft_args_selector(arguments, format[i + 1], &count);
-			i++;
-		}
+		ft_putchar_ptr(format[i], &count);
 		i++;
 	}
-	return (count);
+	else
+	{
+		if (ft_strchr(AUTH_ARGS, format[i +1]) == 0)
+			ft_format_selection(*format + i + 1, arguments, &count);
+		i += 2;
+	}
+}
 va_end (arguments);
 return (count);
 }
-/*
+
 #include <stdio.h>
 
 int main()
@@ -107,4 +104,3 @@ int main()
 
 	return (0);
 }
-*/

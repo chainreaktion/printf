@@ -6,7 +6,7 @@
 #    By: jschmitz <jschmitz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/04 19:16:47 by jschmitz          #+#    #+#              #
-#    Updated: 2024/07/07 20:30:02 by jschmitz         ###   ########.fr        #
+#    Updated: 2024/07/08 21:47:56 by jschmitz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC = cc
 
 SRCS = ft_printf.c ft_putchar_ptr.c ft_putnbr_hex_ptr.c \
 	ft_putnbr_ptr.c ft_putstr_ptr.c ft_unsigned_putnbr_ptr.c \
-	ft_printptr.c ft_args_selector.c
+	ft_putptr.c ft_args_selector.c
 
 OBJ = $(SRCS:.c=.o)
 
